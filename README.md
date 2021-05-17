@@ -1,4 +1,4 @@
-# ui-codemirror [![GitHub Actions status |pink-gorilla/ui-codemirror](https://github.com/pink-gorilla/ui-codemirror/workflows/CI/badge.svg)](https://github.com/pink-gorilla/ui-codemirror/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/ui-codemirror.svg)](https://clojars.org/org.pinkgorilla/ui-coemirror)
+# ui-codemirror [![GitHub Actions status |pink-gorilla/ui-codemirror](https://github.com/pink-gorilla/ui-codemirror/workflows/CI/badge.svg)](https://github.com/pink-gorilla/ui-codemirror/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/ui-codemirror.svg)](https://clojars.org/org.pinkgorilla/ui-codemirror)
 
 Use [cdemirror](https://codemirror.net/) in goldly.
 
