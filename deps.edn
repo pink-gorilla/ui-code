@@ -43,7 +43,7 @@
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch"
                :config {:goldly {:extensions [[ui.codemirror.goldly.core]
-                                              [ui.codemirror.goldly.examples]
+                                              [ui.codemirror.goldly.snippets]
                                               ]}}}}
 
 ;

@@ -1,16 +1,20 @@
-(ns ui.codemirror.goldly.codemirror-text
+(ns ui.codemirror.goldly.codemirror-atom
   (:require
    [taoensso.timbre :refer-macros [debug debugf info infof error]]
 
    [ui.codemirror.goldly.codemirror-themed :refer [codemirror-themed]]))
 
-(defn codemirror [id text-a]
+(defn codemirror-atom [id a path]
   (let [cm-opt {}
         get-data (fn [_] ; id
-                   @text-a)
+                   (if path
+                     (get-in @a path)
+                     @a))
         save-data (fn [_ text]
                     (info "cm-text save")
-                    (reset! text-a text))
+                    (if path
+                      (swap! a assoc-in path text)
+                      (reset! a text)))
         cm-events (fn [cm-evt]
                     (info "cm-text event " cm-evt))
         fun {:get-data get-data

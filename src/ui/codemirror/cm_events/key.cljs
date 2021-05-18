@@ -1,8 +1,24 @@
 (ns ui.codemirror.cm-events.key
   (:require
    [taoensso.timbre :refer-macros [debug debugf info infof error]]
-   [ui.codemirror.cm-js.arrow-nav :refer [arrow-up arrow-down]]
-   [ui.codemirror.cm-js.completion :refer [hint]]))
+   [ui.codemirror.cm-js.line :refer [first-line? last-line?]]
+   [ui.codemirror.cm-js.completion :refer [hint]]
+   [ui.codemirror.fun :refer [dispatch]]))
+
+(defn arrow-up [{:keys [cm id fun] :as context} e]
+  (debugf "arrow-up context: %s" context)
+  (when (first-line? cm)
+    (debug "up on first-line!")
+    (.preventDefault e)
+    (dispatch context [:cm/move id :up])))
+
+(defn arrow-down [{:keys [cm id fun] :as context} e]
+  (debugf "arrow-down context: %s" context)
+  (when (last-line? cm)
+    (debug "down on last-line!")
+    (.preventDefault e)
+    (dispatch context [:cm/move id :down])))
+
 
 ;; http://gcctech.org/csc/javascript/javascript_keycodes.htm
 
