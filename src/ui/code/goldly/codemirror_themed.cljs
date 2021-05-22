@@ -1,4 +1,4 @@
-(ns ui.codemirror.goldly.codemirror-themed
+(ns ui.code.goldly.codemirror-themed
   (:require
    [re-frame.core :as rf]
    [ui.codemirror.core :refer [codemirror-reagent]]))
