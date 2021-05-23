@@ -2,7 +2,7 @@
 
 Code Editors + Viewers:
 - [Codemirror](https://codemirror.net/) for editing.
-- [Highlight.js]()
+- [Highlight.js](https://highlightjs.org/) syntax hihlighter.
 
 ## End-Users
 - this project is NOT for you! Instead go to:

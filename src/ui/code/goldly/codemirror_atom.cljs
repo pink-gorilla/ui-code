@@ -5,12 +5,13 @@
 
 (defn codemirror-atom [id a path]
   (let [cm-opt {}
-        get-data (fn [_] ; id
+        get-data (fn [id]
+                   (info "cm-text get id:" id)
                    (if path
                      (get-in @a path)
                      @a))
-        save-data (fn [_ text]
-                    (info "cm-text save")
+        save-data (fn [id text]
+                    (info "cm-text save id:" id)
                     (if path
                       (swap! a assoc-in path text)
                       (reset! a text)))
