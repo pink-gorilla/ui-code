@@ -1,6 +1,7 @@
 {:paths ["src" 
          "resources" ; snippets
          "target/webly" ; webly bundel
+         "target/node_modules" ; npm module css
          ]
  :deps
  {org.clojure/clojure    {:mvn/version "1.10.3"}
