@@ -38,6 +38,10 @@ jobs:
       shell: bash
     - name: show git tag
       run: clojure -M:garamond
+    - name: npm-install (css resources)
+      run: |
+        clojure -X:npm-install
+        ./scripts/copy_res.sh
     #- name: clj-kondo
     #  run: clojure -M:lint
     #- name: test-clj
