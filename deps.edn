@@ -1,12 +1,10 @@
-{:paths ["src" 
+{:paths ["src"
          "resources" ; snippets
          "target/webly" ; webly bundel
          "target/node_modules" ; npm module css
          ]
  :deps
- {org.clojure/clojure    {:mvn/version "1.10.3"}
- 
-  }
+ {org.clojure/clojure    {:mvn/version "1.10.3"}}
  :aliases
  {;https://github.com/applied-science/deps-library
   :release
@@ -44,8 +42,14 @@
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch"
                :config {:goldly {:extensions [[ui.code.goldly.core]
-                                              [ui.code.goldly.snippets]
-                                              ]}}}}
+                                              [ui.code.goldly.snippets]]}}}}
+
+  :npm-install
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"}}
+   :exec-fn goldly-server.app/goldly-server-run!
+   :exec-args {:profile "watch"
+               :config {:goldly {:extensions [[ui.code.goldly.core]
+                                              [ui.code.goldly.snippets]]}}}}
 
 ;
   }}
