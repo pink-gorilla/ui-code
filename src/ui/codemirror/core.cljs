@@ -49,14 +49,13 @@
     (let [input (.getInputField cm)]
       (.blur input))))
 
-(defn focus-active-on-edit [id {:keys [segment-active? cm-md-edit?] :as cm-opts} cm]
-  (when (and segment-active? cm-md-edit?)
+(defn focus-active [id {:keys [active? view-only] :as cm-opts} cm]
+  (when (and active? (not view-only))
     (debugf "focusing cm %s .." id)
-    (focus-cm! cm)
-    (dispatch [:codemirror/set-active id cm])))
+    (focus-cm! cm)))
 
-(defn blur-active-not-edit [id {:keys [segment-active? cm-md-edit?] :as cm-opts} cm]
-  (when (and segment-active? (not cm-md-edit?))
+(defn blur-inactive [id {:keys [active? view-only] :as cm-opts} cm]
+  (when (or (not active?) view-only)
     (debugf "blurring cm %s" id)
     (blur-cm! cm)))
 
@@ -71,7 +70,9 @@
   [id {:keys [get-data] :as fun} cm-opts]
   (let [opts  (merge
                cm-default-opts
-               cm-opts)
+               cm-opts
+               {:readOnly (:view-only cm-opts)})
+        _ (warn "opts: " opts)
         cm (atom nil)
         make-event-handler (fn [f]
                              (fn [s evt]
@@ -100,8 +101,8 @@
           (.on cm_ "keyup"   (make-event-handler on-key-up))
           (.on cm_ "mousedown" (make-event-handler on-mousedown))
 
-          ;(blur-active-not-edit (:id eval-result) opts cm_)
-          ;(focus-active-on-edit (:id eval-result) opts cm_)
+          (blur-inactive id opts cm_)
+          (focus-active id opts cm_)
 
           ;(when on-cm-init (on-cm-init inst))
           ))
@@ -116,8 +117,8 @@
         (let [[_ id opts] (r/argv this)]
           ;(info "component-did-update: current buffer: " eval-result9         
           (editor-load-content @cm (get-data id))
-          ;(blur-active-not-edit (:id eval-result) opts @cm)
-          ;(focus-active-on-edit (:id eval-result) opts @cm)
+          (blur-inactive id opts @cm)
+          (focus-active id opts @cm)
           ;
           ))
 

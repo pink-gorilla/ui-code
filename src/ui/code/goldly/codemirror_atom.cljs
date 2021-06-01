@@ -3,9 +3,8 @@
    [taoensso.timbre :refer-macros [debug debugf info infof error]]
    [ui.code.goldly.codemirror-themed :refer [codemirror-themed]]))
 
-(defn codemirror-atom [id a path]
-  (let [cm-opt {}
-        get-data (fn [id]
+(defn codemirror-atom-impl [cm-opt id a path]
+  (let [get-data (fn [id]
                    (info "cm-text get id:" id)
                    (if path
                      (get-in @a path)
@@ -22,3 +21,11 @@
              :cm-events cm-events}]
 
     [codemirror-themed id fun cm-opt]))
+
+(defn codemirror-atom [id a path]
+  [codemirror-atom-impl {:active? true
+                         :view-only false} id a path])
+
+(defn codemirror-atom-viewonly [id a path]
+  [codemirror-atom-impl {:active? false
+                         :view-only true} id a path])

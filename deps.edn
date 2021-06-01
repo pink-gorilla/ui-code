@@ -1,6 +1,6 @@
 {:paths ["src"
          "resources" ; snippets
-         "target/webly" ; webly bundel
+         ;"target/webly" ; webly bundel
          "target/node_modules" ; npm module css
          ]
  :deps
@@ -38,14 +38,18 @@
    :main-opts ["-m" "garamond.main"]}
 
   :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"}}
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
+                                        :exclusions  [org.pinkgorilla/ui-code]
+                                        }}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch"
                :config {:goldly {:extensions [[ui.code.goldly.core]
                                               [ui.code.goldly.snippets]]}}}}
 
   :npm-install
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"}}
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
+                                        :exclusions  [org.pinkgorilla/ui-site]
+                                        }}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "npm-install"
                :config {:goldly {:extensions [[ui.code.goldly.core]
