@@ -6,7 +6,6 @@ Code Editors + Viewers:
 
 ## End-Users
 - this project is NOT for you! Instead go to:
-- [goldly](https://github.com/pink-gorilla/goldly)
 - [notebook](https://github.com/pink-gorilla/notebook)
 
  

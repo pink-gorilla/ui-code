@@ -51,12 +51,12 @@
 
 (defn focus-active [id {:keys [active? view-only] :as cm-opts} cm]
   (when (and active? (not view-only))
-    (debugf "focusing cm %s .." id)
+    (debugf "focusing cm %s .." id  "active:" active? "view-only: " view-only)
     (focus-cm! cm)))
 
 (defn blur-inactive [id {:keys [active? view-only] :as cm-opts} cm]
   (when (or (not active?) view-only)
-    (debugf "blurring cm %s" id)
+    (debugf "blurring cm %s" id  "active:" active? "view-only: " view-only)
     (blur-cm! cm)))
 
 (defn destroy-editor [cm-a]
@@ -114,7 +114,7 @@
 
       :component-did-update
       (fn [this old-argv]
-        (let [[_ id opts] (r/argv this)]
+        (let [[_ id fun opts] (r/argv this)]
           ;(info "component-did-update: current buffer: " eval-result9         
           (editor-load-content @cm (get-data id))
           (blur-inactive id opts @cm)
