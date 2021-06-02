@@ -72,7 +72,7 @@
                cm-default-opts
                cm-opts
                {:readOnly (:view-only cm-opts)})
-        _ (warn "opts: " opts)
+        ;_ (warn "opts: " opts)
         cm (atom nil)
         make-event-handler (fn [f]
                              (fn [s evt]
