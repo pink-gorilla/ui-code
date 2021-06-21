@@ -6,9 +6,7 @@
    [reagent.core :as r]
    [cljs.tools.reader]))
 
-
 ;; Docstrings / auto complete
-
 
 (defn do-completions
   "@param {CodeMirror} cm"

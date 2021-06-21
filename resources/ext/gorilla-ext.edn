@@ -1,0 +1,17 @@
+{:name "ui-code"
+ :clj-require []
+ :cljs-namespace [ui.code.goldly.core]
+ :cljs-bindings {}
+ :cljs-ns-bindings {}
+ :snippets [{:type :pinkie
+              :category :code
+              :id :highlightjs
+              :filename "snippets/code/highlight.edn"}
+            {:type :goldly-clj
+              :category :code
+              :id :codemirror1
+              :filename "snippets/code/codemirror1.clj"}
+            {:type :goldly-clj
+              :category :code
+              :id :codemirror2
+              :filename "snippets/code/codemirror2.clj"}]}

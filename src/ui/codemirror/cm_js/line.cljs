@@ -4,7 +4,6 @@
 
 ; navigate buffer up/down
 
-
 (defn first-line-number [cm]
   (.firstLine cm))
 

@@ -19,9 +19,7 @@
     (.preventDefault e)
     (dispatch context [:cm/move id :down])))
 
-
 ;; http://gcctech.org/csc/javascript/javascript_keycodes.htm
-
 
 (comment
   (def tab           9)

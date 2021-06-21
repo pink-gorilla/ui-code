@@ -18,7 +18,6 @@
 
 ;(def themes (->> theme-names (mapv vector (map keyword theme-names)) (into {})))
 
-
 ;; styles for theme
 
 (defn style-codemirror-inline []

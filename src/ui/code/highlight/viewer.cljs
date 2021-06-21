@@ -13,7 +13,6 @@
 (.registerLanguage hljs "clojure" clojure)
 (.registerLanguage hljs "clojure-repl" clojure-repl)
 
-
 ;(.registerLanguage hljs "javascript" javascript)
 ;(.registerLanguage hljs "markdown" markdown)
 ;(.registerLanguage hljs "plaintext" plaintext)
@@ -22,7 +21,6 @@
 ;;  "react-highlight.js": "^1.0.7",
 
 ;(.initHighlightingOnLoad hljs)
-
 
 (defn code-viewer [code]
   [:pre.clojure

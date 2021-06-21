@@ -22,8 +22,6 @@ Codemirror snippets are in `running systems` / `snippet-registry`
 
 This library provides the pinkie ui renderer [:p/codemirror id atom path]
 
-You can add either just the ui renderer [ui.code.goldly.core], 
-or can also add the snippets [ui.code.goldly.snippets].
 
 Add this alias to your deps.edn:
 
@@ -33,9 +31,7 @@ Add this alias to your deps.edn:
                 org.pinkgorilla/ui-code {:mvn/version "0.0.3"}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch"
-               :config {:goldly {:extensions [[ui.code.goldly.core]
-                                              [ui.code.goldly.snippets]
-                                              ]}}}}
+               :config {:goldly {:extensions []}}}}
 ```
 
 
