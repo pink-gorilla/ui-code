@@ -36,21 +36,23 @@
   {:extra-deps {com.workframe/garamond {:mvn/version "0.4.0"}}
    :main-opts ["-m" "garamond.main"]}
 
+  ;; app
+
   :goldly
   {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
-                                        :exclusions  [org.pinkgorilla/ui-code]
-                                        }}
+                                        :exclusions  [org.pinkgorilla/ui-code]}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch"
-               :config {:goldly {}}}}
+               :config {:google-analytics {:enabled false}
+                        :goldly {}}}}
 
   :npm-install
   {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
-                                        :exclusions  [org.pinkgorilla/ui-site]
-                                        }}
+                                        :exclusions  [org.pinkgorilla/ui-code]}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "npm-install"
-               :config {:goldly {}}}}
+               :config {
+                        :goldly {}}}}
 
 ;
   }}
