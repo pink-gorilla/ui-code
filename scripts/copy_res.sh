@@ -14,7 +14,6 @@ cpr () {
 }
 
 cpr "codemirror/lib" "*.css" 
-
 #mkdir -p target/node_modules/public/codemirror/theme
 cpr "codemirror/theme" "*.css" 
 
