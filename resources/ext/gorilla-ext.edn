@@ -1,11 +1,5 @@
 {:name "ui-code"
  :clj-require []
- :cljs-namespace [ui.code.goldly.core]
- :cljs-bindings {'code ui.code.highlight.viewer/code-viewer
-                 'codemirror ui.code.goldly.codemirror-atom/codemirror-atom}
- 
- :cljs-ns-bindings {}
-
  :theme {:available {;:code-linenumber  {true ["goldly/code.css"]}
                      :codemirror {true ["codemirror/lib/codemirror.css"]
                                   "duotone-dark" ["codemirror/theme/duotone-dark.css"]
@@ -71,7 +65,7 @@
                                   "lucario" ["codemirror/theme/lucario.css"]
                                   "material" ["codemirror/theme/material.css"]
                                   "idea" ["codemirror/theme/idea.css"]}
-                     
+
                      :highlight {"rainbow" ["highlight.js/styles/rainbow.css"]
                                  "grayscale" ["highlight.js/styles/grayscale.css"]
                                  "brown-paper" ["highlight.js/styles/brown-paper.css"]
@@ -166,11 +160,24 @@
                                  "codepen-embed" ["highlight.js/styles/codepen-embed.css"]
                                  "atelier-sulphurpool-dark" ["highlight.js/styles/atelier-sulphurpool-dark.css"]
                                  "idea" ["highlight.js/styles/idea.css"]}}
-         
-         :current {;:code-linenumber true
-                   :codemirror "paraiso-dark"
-                   :highlight "github"}}
 
+         :current {;:code-linenumber true
+                   :codemirror "mdn-like" ; "paraiso-dark"
+                   :highlight "default" ;"github"
+                   }}
+
+ :cljs-namespace [ui.code.highlight.viewer
+                  ui.code.goldly.codemirror-atom
+                  ui.code.goldly.init
+                  ]
+ :cljs-bindings {'code ui.code.highlight.viewer/code-viewer
+                 'codemirror ui.code.goldly.codemirror-atom/codemirror-atom
+                 'codemirror-viewonly ui.code.goldly.codemirror-atom/codemirror-atom-viewonly}
+
+ :cljs-ns-bindings {}
+ :pinkie {:p/code ui.code.highlight.viewer/code-viewer
+          :p/codemirror ui.code.goldly.codemirror-atom/codemirror-atom
+          :p/codemirror-viewonly ui.code.goldly.codemirror-atom/codemirror-atom-viewonly}
 
  :snippets [{:type :pinkie
              :category :code
