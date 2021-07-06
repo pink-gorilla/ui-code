@@ -50,7 +50,8 @@
                         :goldly {}}}}
 
   :npm-install
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
+  {:extra-deps {org.pinkgorilla/picasso {:mvn/version "3.1.50"}
+                org.pinkgorilla/goldly {:mvn/version "RELEASE"
                                         :exclusions  [org.pinkgorilla/ui-code
                                                       org.pinkgorilla/picasso]}}
    :exec-fn goldly-server.app/goldly-server-run!
