@@ -1,8 +1,6 @@
 # ui-code [![GitHub Actions status |pink-gorilla/ui-codemirror](https://github.com/pink-gorilla/ui-code/workflows/CI/badge.svg)](https://github.com/pink-gorilla/ui-code/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/ui-code.svg)](https://clojars.org/org.pinkgorilla/ui-code)
 
-Code Editors + Viewers:
-- [Codemirror](https://codemirror.net/) for editing.
-- [Highlight.js](https://highlightjs.org/) syntax hihlighter.
+[Codemirror](https://codemirror.net/) Code Editors / Viewer.
 
 ## End-Users
 - this project is NOT for you! Instead go to:
@@ -27,8 +25,8 @@ Add this alias to your deps.edn:
 
 ```
  :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.2.39"}
-                org.pinkgorilla/ui-code {:mvn/version "0.0.3"}}
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"}
+                org.pinkgorilla/ui-code {:mvn/version "RELEASE"}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch"
                :config {:goldly {}}}}
