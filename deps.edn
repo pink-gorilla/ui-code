@@ -39,21 +39,16 @@
   ;; app
 
   :goldly
-  {:extra-deps {org.pinkgorilla/picasso {:mvn/version "3.1.50"}
-                org.pinkgorilla/goldly {:mvn/version "RELEASE"
-                                        :exclusions  [org.pinkgorilla/ui-code
-                                                      org.pinkgorilla/picasso
-                                                      ]}}
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
+                                        :exclusions  [org.pinkgorilla/ui-code]}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch"
                :config {:google-analytics {:enabled false}
-                        :goldly {}}}}
+                        :goldly {:lazy true}}}}
 
   :npm-install
-  {:extra-deps {org.pinkgorilla/picasso {:mvn/version "3.1.50"}
-                org.pinkgorilla/goldly {:mvn/version "RELEASE"
-                                        :exclusions  [org.pinkgorilla/ui-code
-                                                      org.pinkgorilla/picasso]}}
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
+                                        :exclusions  [org.pinkgorilla/ui-code]}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "npm-install"
                :config {
