@@ -68,8 +68,7 @@
          :current {:codemirror "mdn-like" ; "paraiso-dark"
                    }}
 
- :cljs-namespace [ui.code.goldly.codemirror-atom
-                  ui.code.goldly.init]
+ :cljs-namespace [ui.code.goldly.codemirror-atom]
  :cljs-bindings {'codemirror ui.code.goldly.codemirror-atom/codemirror-atom
                  'codemirror-viewonly ui.code.goldly.codemirror-atom/codemirror-atom-viewonly}
  :cljs-ns-bindings {}

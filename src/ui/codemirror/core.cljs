@@ -27,7 +27,7 @@
 (defn configure-cm-globally!
   "Initialize CodeMirror globally"
   []
-  (info "Configure Code Mirror globally")                  ;
+  (error "Configure Code Mirror globally")                  ;
   (let [cm-commands (.-commands CodeMirror)
         cm-keymap (.-keyMap CodeMirror)]
     (if cm-commands
