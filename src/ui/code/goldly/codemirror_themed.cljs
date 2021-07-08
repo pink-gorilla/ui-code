@@ -1,6 +1,7 @@
 (ns ui.code.goldly.codemirror-themed
   (:require
    [re-frame.core :as rf]
+   [taoensso.timbre :refer-macros [debug debugf info infof errorf]]
    [ui.codemirror.core :refer [configure-cm-globally! codemirror-reagent]]))
 
 ; webly brings a css loader
@@ -25,5 +26,8 @@
         [:div.my-codemirror
          [codemirror-reagent id fun cm-opt-themed]]))))
 
+(defn codemirror-themed2 [id fun cm-opt]
+  (errorf "cm id: %s fun: %s opt: %s" id fun cm-opt)
+  [codemirror-themed id fun cm-opt])
 
 
