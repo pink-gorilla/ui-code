@@ -11,7 +11,7 @@
 (defn codemirror-themed [id fun cm-opt]
   (let [theme (rf/subscribe [:css/theme-component :codemirror])]
     (fn [id fun cm-opt]
-      (let [theme (or @theme "paraiso-dark") ;"(or (:codemirror-theme @settings) "paraiso-dark")
+      (let [theme (or @theme "mdn-like") ;"(or (:codemirror-theme @settings) "paraiso-dark")
             cm-opt-themed (merge cm-opt {:theme theme})]
         [:div.my-codemirror
          [codemirror-reagent id fun cm-opt-themed]]))))

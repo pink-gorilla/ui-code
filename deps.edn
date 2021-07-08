@@ -39,7 +39,7 @@
   ;; app
 
   :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.3.11"
                                         :exclusions  [org.pinkgorilla/ui-code]}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "watch2"
@@ -47,12 +47,11 @@
                         :goldly {:lazy true}}}}
 
   :npm-install
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
+  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.3.11"
                                         :exclusions  [org.pinkgorilla/ui-code]}}
    :exec-fn goldly-server.app/goldly-server-run!
    :exec-args {:profile "npm-install"
-               :config {
-                        :goldly {}}}}
+               :config {:goldly {}}}}
 
 ;
   }}
