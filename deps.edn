@@ -42,7 +42,7 @@
   {:extra-deps {org.pinkgorilla/goldly {:mvn/version "RELEASE"
                                         :exclusions  [org.pinkgorilla/ui-code]}}
    :exec-fn goldly-server.app/goldly-server-run!
-   :exec-args {:profile "watch"
+   :exec-args {:profile "watch2"
                :config {:google-analytics {:enabled false}
                         :goldly {:lazy true}}}}
 
