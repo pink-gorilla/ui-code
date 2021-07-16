@@ -5,6 +5,6 @@
    [ui.codemirror.cm-js.line :refer [cursor-coords]]))
 
 (defn on-mousedown [{:keys [cm-opts cm id] :as context} sender evt]
-  (info "on-mousedown segment-id: " id)
+  (debug "on-mousedown segment-id: " id)
   (let [c (cursor-coords cm)]
     (dispatch context [:cm/mouse-down id c])))
