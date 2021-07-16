@@ -27,7 +27,7 @@
          [codemirror-reagent id fun cm-opt-themed]]))))
 
 (defn codemirror-themed2 [id fun cm-opt]
-  (errorf "cm id: %s fun: %s opt: %s" id fun cm-opt)
+  (debugf "cm id: %s fun: %s opt: %s" id fun cm-opt)
   [codemirror-themed id fun cm-opt])
 
 
