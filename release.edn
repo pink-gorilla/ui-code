@@ -1,4 +1,4 @@
 {:group-id "org.pinkgorilla"
- :artifact-id "ui-code"
- :scm-url "https://github.com/pink-gorilla/ui-code/"
+ :artifact-id "ui-codemirror"
+ :scm-url "https://github.com/pink-gorilla/ui-codemirror/"
  }

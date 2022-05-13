@@ -1,4 +1,4 @@
-(ns ui.code.goldly.codemirror-themed
+(ns ui.codemirror.goldly.codemirror-themed
   (:require
    [re-frame.core :as rf]
    [taoensso.timbre :refer-macros [debug debugf info infof errorf]]

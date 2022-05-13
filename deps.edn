@@ -1,6 +1,6 @@
 {:paths ["src"
-         "resources" ; snippets
-         "target/node_modules" ; npm module css
+         "resources" ; goldly-extension
+         "target/node_modules" ; ship css from npm/codemirror in jar
          ]
  :deps
  {org.clojure/clojure    {:mvn/version "1.10.3"}}
@@ -36,22 +36,33 @@
   {:extra-deps {com.workframe/garamond {:mvn/version "0.4.0"}}
    :main-opts ["-m" "garamond.main"]}
 
-  ;; app
+  ; demo
 
-  :goldly
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.3.11"
-                                        :exclusions  [org.pinkgorilla/ui-code]}}
-   :exec-fn goldly-server.app/goldly-server-run!
-   :exec-args {:profile "watch2"
-               :config {:google-analytics {:enabled false}
-                        :goldly {:lazy true}}}}
+ :goldly-build ; goldly compile (show reval in goldly, but with up to date reval!)
+{:extra-paths ["target/webly" ; to include the sci-bindings info
+               "demo"
+               ]
+ :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.517"}
+              org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; reagent
+              }
+ :exec-fn goldly.app.build/goldly-build
+ :exec-args {:profile "npm-install"
+             :config  ["webly/config.edn" "goldly/config.edn" "demo-config.edn"]}}
 
-  :npm-install
-  {:extra-deps {org.pinkgorilla/goldly {:mvn/version "0.3.11"
-                                        :exclusions  [org.pinkgorilla/ui-code]}}
-   :exec-fn goldly-server.app/goldly-server-run!
-   :exec-args {:profile "npm-install"
-               :config {:goldly {}}}}
+
+:goldly-run ; goldly compile (show reval in goldly, but with up to date reval!)
+{:extra-paths ["target/webly" ; to include the sci-bindings info
+               "node_modules"
+               "demo"
+               ]
+ :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.517"}
+              org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; reagent
+              }
+ :exec-fn modular.system/start!
+ :exec-args {:profile "watch2"
+             :services "goldly/services.edn"
+             :config  ["webly/config.edn" "goldly/config.edn" "demo-config.edn"]}}
+
 
 ;
   }}

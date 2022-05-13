@@ -3,7 +3,6 @@
    [taoensso.timbre :refer-macros [debug debugf info infof warn error]]
    [reagent.core :as r]
    [reagent.dom :as rd]
-   [re-frame.core :refer [dispatch]]
    ["codemirror" :as CodeMirror]
    ["codemirror/addon/edit/closebrackets"]
    ["codemirror/addon/edit/matchbrackets"]
@@ -59,11 +58,25 @@
     (debugf "blurring cm %s" id  "active:" active? "view-only: " view-only)
     (blur-cm! cm)))
 
-(defn destroy-editor [cm-a]
-  (if @cm-a
-    (do (.toTextArea @cm-a)
-        (reset! cm-a nil))
-    (warn "Could not kill CodeMirror instance")))
+(defonce active-editor-atom
+  (r/atom {}))
+
+(defn get-editor [id]
+  (get @active-editor-atom id))
+
+(defn create-editor [id el opts-js]
+  (info "creating codemirror-js id: " id)
+  ;cm_ (CodeMirror. el opts-js)
+  (let [cm (.fromTextArea CodeMirror el opts-js)]
+    (swap! active-editor-atom assoc id cm)
+    cm))
+
+(defn destroy-editor [id]
+  (info "destroying codemirror-js id: " id)
+  (if-let [cm (get-editor id)]
+    (do (.toTextArea cm)
+        (swap! active-editor-atom dissoc id))
+    (warn "Could not kill CodeMirror instance id: " id)))
 
 (defn codemirror-reagent
   "code-mirror editor"
@@ -73,24 +86,21 @@
                cm-opts
                {:readOnly (:view-only cm-opts)})
         ;_ (warn "opts: " opts)
-        cm (atom nil)
         make-event-handler (fn [f]
                              (fn [s evt]
                                ;(info "cm event - evt: " evt " cm:" s)
                                (f {:id id
                                    :cm-opts opts
                                    :fun fun
-                                   :cm @cm} s evt)))]
+                                   :cm (get-editor id)} s evt)))]
     (r/create-class
      {:component-did-mount
       (fn [this]
         (let [el (rd/dom-node this)
               opts-js (clj->js opts)
               ;_ (info "component-did-mount: cm")
-              ;cm_ (CodeMirror. el opts-js)
-              cm_ (.fromTextArea CodeMirror el opts-js)
+              cm_ (create-editor id el opts-js)
               code (get-data id)]
-          (reset! cm cm_)
           (.setValue cm_ code)
 
           ; theme - already set in cm constructor
@@ -110,15 +120,16 @@
       :component-will-unmount
       (fn [this]
         (debug "cm component-will-unmount")
-        (destroy-editor cm))
+        (destroy-editor id))
 
       :component-did-update
       (fn [this old-argv]
         (let [[_ id fun opts] (r/argv this)]
           ;(info "component-did-update: current buffer: " eval-result9         
-          (editor-load-content @cm (get-data id))
-          (blur-inactive id opts @cm)
-          (focus-active id opts @cm)
+          (when-let [cm (get-editor id)]
+            (editor-load-content cm (get-data id))
+            (blur-inactive id opts cm)
+            (focus-active id opts cm))
           ;
           ))
 
