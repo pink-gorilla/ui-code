@@ -21,7 +21,8 @@
    [ui.codemirror.cm-events.change :refer [editor-load-content on-change]]
    [ui.codemirror.cm-events.key :refer [on-key-down on-key-up]]
    [ui.codemirror.cm-events.mouse :refer [on-mousedown]]
-   [ui.codemirror.options :refer [cm-default-opts cm-keybindings]]))
+   [ui.codemirror.options :refer [cm-default-opts cm-keybindings]]
+   [ui.codemirror.registry :refer [active-editor-atom get-editor]]))
 
 (defn configure-cm-globally!
   "Initialize CodeMirror globally"
@@ -57,12 +58,6 @@
   (when (or (not active?) view-only)
     (debugf "blurring cm %s" id  "active:" active? "view-only: " view-only)
     (blur-cm! cm)))
-
-(defonce active-editor-atom
-  (r/atom {}))
-
-(defn get-editor [id]
-  (get @active-editor-atom id))
 
 (defn create-editor [id el opts-js]
   (info "creating codemirror-js id: " id)

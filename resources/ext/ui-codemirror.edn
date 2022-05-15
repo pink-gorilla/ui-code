@@ -1,21 +1,11 @@
 {:name "ui-codemirror"
  ; compile time
- :lazy false ; true
+ :lazy true
  :cljs-namespace [; for codemirror with reagent-atom bindings.
-                  ui.codemirror.goldly.codemirror-atom
-                  ; for interactions with codemirror instance:
-                  ui.codemirror.goldly.codemirror-api
-                  ui.codemirror.core
-                  ui.codemirror.cm-js.line
-                  ]
+                  ui.codemirror.goldly.codemirror-atom]
  :cljs-bindings {'codemirror ui.codemirror.goldly.codemirror-atom/codemirror-atom
                  'codemirror-viewonly ui.codemirror.goldly.codemirror-atom/codemirror-atom-viewonly
                  'codemirror-themed2 ui.codemirror.goldly.codemirror-themed/codemirror-themed2}
- :cljs-ns-bindings {'cm {'get ui.codemirror.goldly.codemirror-api/get-editor
-                         'cursor-position ui.codemirror.goldly.codemirror-api/cursor-position
-                         }}
- :pinkie {:p/codemirror ui.codemirror.goldly.codemirror-atom/codemirror-atom
-          :p/codemirror-viewonly ui.codemirror.goldly.codemirror-atom/codemirror-atom-viewonly}
 
  :theme {:available {:codemirror {true ["codemirror/lib/codemirror.css"]
                                   "duotone-dark" ["codemirror/theme/duotone-dark.css"]
@@ -82,5 +72,4 @@
                                   "material" ["codemirror/theme/material.css"]
                                   "idea" ["codemirror/theme/idea.css"]}}
          :current {:codemirror "mdn-like" ; "paraiso-dark"
-                   }}
-}
+                   }}}
