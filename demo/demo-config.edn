@@ -5,4 +5,25 @@
           :routes {:app {"" :codemirror-demo-page
                          "2" :codemirror-demo-page2
                          "3" :codemirror-demo-page3
-                         }}}}
+                         }}}
+ 
+
+ :keybindings
+  [; segment navigation - handled in keydown event
+   ;{:kb "up"   :handler [:arrow-up]    :desc "Codemirror Key Up"} ; :scope :codemirror
+   ;{:kb "down" :handler [:arrow-down] :desc "Codemirror Key Down"} :scope :codemirror
+   {:kb "shift-enter" :handler [:codemirror-active/completion-apply]  :desc "applies auto completion"}
+   {:kb "ctrl-space"  :handler [:codemirror/completion-get]     :desc "Show possible auto-completions"}
+   ; {:spec "enter"    :handler [:completion/clear]          :key ::clear}
+   ; {:spec "ctrl"     :handler [:completion/show-all false] :scope :global :key ::show-all-hide}
+   {:kb "alt-g c"     :handler [:clojuredocs]               :desc "Look up the symbol under the cursor in ClojureDocs"}
+   
+   ; eval
+   {:kb "alt-shift-enter"     :handler [:notebook/evaluate-all] :desc "Evaluate all segments."}
+   {:kb "ctrl-shift-enter" :handler [:notebook/evaluate-all]         :desc "Evaluate all segments"}
+   {:kb "ctrl-enter" :handler [:repl/eval-expression]               :desc "Evaluate the highlighted segment"}
+   
+   ]
+
+ 
+ }

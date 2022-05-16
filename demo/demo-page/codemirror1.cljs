@@ -36,4 +36,12 @@
 
 
 
+(rf/reg-event-fx
+ :repl/eval-expression
+ (fn [cofx [_ data]]
+   (info (str "evaluating repl segment!" data))
+
+   nil))
+
+
 
