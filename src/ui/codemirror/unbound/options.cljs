@@ -1,4 +1,7 @@
-(ns ui.codemirror.options)
+(ns ui.codemirror.unbound.options
+  (:require
+   [taoensso.timbre :refer-macros [debug debugf info infof warn error]]
+   ["codemirror" :as CodeMirror]))
 
 (def cm-default-opts
   {:lineNumbers true
@@ -15,7 +18,7 @@
    :matchBrackets true
    :autoCloseBrackets "()[]{}\"\""
    :showCursorWhenSelecting true
-   :theme "paraiso-dark" ; "default" ; 
+   :theme "mdn-like" ; "default" ; 
    :mode "clojure" ; "clojure-parinfer"
    ;:keyMap "default" ; "vim" 
    :keyMap "gorilla"
@@ -34,3 +37,30 @@
                                                           {:mode "clojure"})}
                         :text/x-markdown {:cm-opts (merge cm-default-opts-common
                                                           {:mode "text/x-markdown"})}})
+
+(defn configure-cm-globally!
+  "Initialize CodeMirror globally"
+  []
+  (error "Configure Code Mirror globally")                  ;
+  (let [cm-commands (.-commands CodeMirror)
+        cm-keymap (.-keyMap CodeMirror)]
+    (if cm-commands
+      (aset cm-commands "doNothing" #())
+      (error "could not set codemirror commands!"))
+    (if cm-keymap
+      (aset cm-keymap "gorilla" (clj->js cm-keybindings))
+      (error "could not set codemirror keymap!"))
+    nil))
+
+; webly brings a css loader
+; this css loader is essential for codemirror, because codemirror expects
+; that the css theme is loaded before it gets rendered.
+; the css loader takes care of that - also if the theme gets changed at runtime
+
+(defonce needs-init (atom true))
+
+(defn ensure-initialized []
+  (when @needs-init
+    (configure-cm-globally!)
+    (reset! needs-init false))
+  nil)

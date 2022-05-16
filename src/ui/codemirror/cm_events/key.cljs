@@ -1,7 +1,7 @@
 (ns ui.codemirror.cm-events.key
   (:require
    [taoensso.timbre :refer-macros [debug debugf info infof error]]
-   [ui.codemirror.cm-js.line :refer [first-line? last-line?]]
+   [ui.codemirror.api.position :refer [first-line? last-line?]]
    [ui.codemirror.cm-js.completion :refer [hint]]
    [ui.codemirror.fun :refer [dispatch]]))
 

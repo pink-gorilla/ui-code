@@ -17,15 +17,8 @@
 
 ```
 clojure -X:goldly-build :profile '"npm-install"'
-clojure -X:goldly-build :profile '"compile"'
+clojure -X:goldly-build :profile '"compile2"'
 clojure -X:goldly-run
 ```
 
 Navigate your webbrowser to port 8080. 
-
-
-## Use outside of goldly and webly
-
-- We use on goldly and webly to manage css and for snippet examples.
-- You can create a custom clojurescript project with shadow-cljs 
-  and ignore `src/ui/codemirror/goldly`.

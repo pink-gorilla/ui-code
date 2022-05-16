@@ -1,11 +1,13 @@
 {:name "ui-codemirror"
- ; compile time
+ ; build
  :lazy true
  :cljs-namespace [; for codemirror with reagent-atom bindings.
-                  ui.codemirror.goldly.codemirror-atom]
- :cljs-bindings {'codemirror ui.codemirror.goldly.codemirror-atom/codemirror-atom
-                 'codemirror-viewonly ui.codemirror.goldly.codemirror-atom/codemirror-atom-viewonly
-                 'codemirror-themed2 ui.codemirror.goldly.codemirror-themed/codemirror-themed2}
+                  ui.codemirror.unbound.codemirror
+                  ui.codemirror.bound.codemirror-atom]
+ :cljs-bindings {'codemirror-unbound ui.codemirror.unbound.codemirror/codemirror-unbound
+                 'codemirror ui.codemirror.bound.codemirror-atom/codemirror-atom
+                 'codemirror-viewonly ui.codemirror.bound.codemirror-atom/codemirror-atom-viewonly
+                 'codemirror-themed ui.codemirror.bound.codemirror-themed/codemirror-themed}
 
  :theme {:available {:codemirror {true ["codemirror/lib/codemirror.css"]
                                   "duotone-dark" ["codemirror/theme/duotone-dark.css"]

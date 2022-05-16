@@ -1,4 +1,4 @@
-(ns ui.codemirror.core
+(ns ui.codemirror.bound.core
   (:require
    [taoensso.timbre :refer-macros [debug debugf info infof warn error]]
    [reagent.core :as r]
@@ -16,27 +16,13 @@
    ; ["parinfer-codemirror"]
    ; [cljsjs.codemirror.mode.clojure-parinfer]
    ;["codemirror/keymap/vim"]
-   [ui.codemirror.theme]
+   [ui.codemirror.registry :refer [active-editor-atom get-editor]]
+   [ui.codemirror.unbound.theme]
+   [ui.codemirror.unbound.options :refer [cm-default-opts ensure-initialized]]
    [ui.codemirror.highlight]
    [ui.codemirror.cm-events.change :refer [editor-load-content on-change]]
    [ui.codemirror.cm-events.key :refer [on-key-down on-key-up]]
-   [ui.codemirror.cm-events.mouse :refer [on-mousedown]]
-   [ui.codemirror.options :refer [cm-default-opts cm-keybindings]]
-   [ui.codemirror.registry :refer [active-editor-atom get-editor]]))
-
-(defn configure-cm-globally!
-  "Initialize CodeMirror globally"
-  []
-  (error "Configure Code Mirror globally")                  ;
-  (let [cm-commands (.-commands CodeMirror)
-        cm-keymap (.-keyMap CodeMirror)]
-    (if cm-commands
-      (aset cm-commands "doNothing" #())
-      (error "could not set codemirror commands!"))
-    (if cm-keymap
-      (aset cm-keymap "gorilla" (clj->js cm-keybindings))
-      (error "could not set codemirror keymap!"))
-    nil))
+   [ui.codemirror.cm-events.mouse :refer [on-mousedown]]))
 
 (defn focus-cm!
   [cm]
@@ -61,6 +47,7 @@
 
 (defn create-editor [id el opts-js]
   (info "creating codemirror-js id: " id)
+  (ensure-initialized)
   ;cm_ (CodeMirror. el opts-js)
   (let [cm (.fromTextArea CodeMirror el opts-js)]
     (swap! active-editor-atom assoc id cm)

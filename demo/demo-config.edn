@@ -1,7 +1,8 @@
 
 {:goldly {:lazy true
-          ; runtime
+          ; run
           :autoload-cljs-dir  ["demo-page"]
           :routes {:app {"" :codemirror-demo-page
                          "2" :codemirror-demo-page2
+                         "3" :codemirror-demo-page3
                          }}}}

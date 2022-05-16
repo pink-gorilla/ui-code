@@ -1,5 +1,5 @@
 {:paths ["src"
-         "resources" ; goldly-extension
+         "resources" ; ext
          "target/node_modules" ; ship css from npm/codemirror in jar
          ]
  :deps
@@ -38,30 +38,28 @@
 
   ; demo
 
- :goldly-build ; goldly compile (show reval in goldly, but with up to date reval!)
-{:extra-paths ["target/webly" ; to include the sci-bindings info
-               "demo"
-               ]
- :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.517"}
-              org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; reagent
-              }
- :exec-fn goldly.app.build/goldly-build
- :exec-args {:profile "npm-install"
-             :config  ["webly/config.edn" "goldly/config.edn" "demo-config.edn"]}}
+  :goldly-build 
+  {:extra-paths ["target/webly" ; to include the sci-bindings info
+                 "demo"]
+   :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.520"}
+                org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; reagent
+                }
+   :exec-fn goldly.app.build/goldly-build
+   :exec-args {:profile "npm-install"
+               :config  ["webly/config.edn" "goldly/config.edn" "demo-config.edn"]}}
 
 
-:goldly-run ; goldly compile (show reval in goldly, but with up to date reval!)
-{:extra-paths ["target/webly" ; to include the sci-bindings info
-               "node_modules"
-               "demo"
-               ]
- :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.517"}
-              org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; reagent
-              }
- :exec-fn modular.system/start!
- :exec-args {:profile "jetty"
-             :services "goldly/services.edn"
-             :config  ["webly/config.edn" "goldly/config.edn" "demo-config.edn"]}}
+  :goldly-run 
+  {:extra-paths ["target/webly" ; to include the sci-bindings info
+                 "node_modules" ; css from npm
+                 "demo"]
+   :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.520"}
+                org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; reagent
+                }
+   :exec-fn modular.system/start!
+   :exec-args {:profile "jetty"
+               :services "goldly/services.edn"
+               :config  ["webly/config.edn" "goldly/config.edn" "demo-config.edn"]}}
 
 
 ;

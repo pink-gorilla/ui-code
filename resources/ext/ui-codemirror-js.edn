@@ -1,11 +1,17 @@
 {:name "ui-codemirror-js"
- ; compile time
+ ; build
  :lazy false ; false, so we dont have a lazy loader.
  :cljs-namespace [; for interactions with codemirror instance:
-                  ui.codemirror.goldly.codemirror-api
-                  ui.codemirror.cm-js.line]
- :cljs-ns-bindings {'cm {'get ui.codemirror.goldly.codemirror-api/get-editor
-                         'cursor-position ui.codemirror.goldly.codemirror-api/cursor-position}}
- 
- 
- }
+                  ui.codemirror.registry
+                  ui.codemirror.unbound.theme
+                  ui.codemirror.api.code
+                  ui.codemirror.api.position
+                  ui.codemirror.api.focus]
+ :cljs-ns-bindings {'cm {'style-inline ui.codemirror.unbound.theme/style-codemirror-inline
+                         'style-fullscreen ui.codemirror.unbound.theme/style-codemirror-fullscreen
+                         'get ui.codemirror.registry/get-editor
+                         'focus ui.codemirror.api.focus/focus
+                         'blur ui.codemirror.api.focus/blur
+                         'set-code ui.codemirror.api.code/set-code
+                         'get-code ui.codemirror.api.code/get-code
+                         'cursor-position ui.codemirror.api.position/cursor-position}}}

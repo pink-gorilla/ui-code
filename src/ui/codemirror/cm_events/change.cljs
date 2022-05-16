@@ -1,17 +1,13 @@
 (ns ui.codemirror.cm-events.change
   (:require
    [taoensso.timbre :refer-macros [debugf info error]]
+   [ui.codemirror.api.position :refer [move-to-last-line]]
    [ui.codemirror.fun :refer [save-data]]))
-
-(defn move-to-last-line [cm]
-  (let [last-line (.lastLine cm)
-        last-ch (count (.getLine cm last-line))]
-    (.setCursor cm last-line last-ch)))
 
 ; load/save from/to buffer
 
-(defn editor-load-content [editor content]
-  (.setValue editor content)
+(defn editor-load-content [cm content]
+  (.setValue cm content)
       ;(move-to-last-line @cm)
   )
 

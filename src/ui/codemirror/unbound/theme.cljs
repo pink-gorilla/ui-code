@@ -1,7 +1,4 @@
-(ns ui.codemirror.theme
-  (:require
-   [re-frame.core :refer [subscribe]]
-   [taoensso.timbre :as timbre :refer [debug info warn error]]))
+(ns ui.codemirror.unbound.theme)
 
 ;; styles for theme
 
@@ -21,10 +18,3 @@
               font-family: monospace;
               height: 100% ;
             }"])
-
-#_(defn styles-codemirror-for-setttings [layout]
-    [:div
-     (if (= layout :single)
-       style-codemirror-fullscreen
-       style-codemirror-inline)])
-

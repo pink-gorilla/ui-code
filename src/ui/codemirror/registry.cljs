@@ -1,6 +1,5 @@
 (ns ui.codemirror.registry
   (:require
-   [taoensso.timbre :refer-macros [debug debugf info infof warn error]]
    [reagent.core :as r]))
 
 (defonce active-editor-atom
