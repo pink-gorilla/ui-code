@@ -1,6 +1,6 @@
 {:name "ui-codemirror-js"
  ; build
- :lazy false ; false, so we dont have a lazy loader.
+ :lazy-sci true
  :cljs-namespace [; for interactions with codemirror instance:
                   ui.codemirror.registry
                   ui.codemirror.unbound.theme
