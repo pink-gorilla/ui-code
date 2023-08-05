@@ -4,7 +4,7 @@
 
 ## End-Users
 - this project is NOT for you! Instead go to:
-- [goldlynotebook](https://github.com/pink-gorilla/goldly)
+- [goldly notebook](https://github.com/pink-gorilla/goldly)
 
 ## Why ui-codemirror?
 
