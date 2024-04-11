@@ -14,7 +14,10 @@
 
 (defn style-codemirror-fullscreen []
   ; height: auto; "400px" "100%"  height: auto;
+  ; auto will make the editor resize to fit its content (i
   [:style ".my-codemirror > .CodeMirror { 
               font-family: monospace;
-              height: 100% ;
+              height: 100%;
+              min-height: 100%;
+              max-height: 100%;
             }"])
