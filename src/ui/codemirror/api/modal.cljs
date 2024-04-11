@@ -1,4 +1,4 @@
-(ns ui.codemirror.api.focus)
+(ns ui.codemirror.api.modal)
 
 (defn focus
   [cm]

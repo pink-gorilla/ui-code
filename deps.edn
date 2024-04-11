@@ -5,12 +5,7 @@
  :deps
  {org.clojure/clojure    {:mvn/version "1.10.3"}}
  :aliases
- {;https://github.com/applied-science/deps-library
-  :release
-  {:extra-deps {applied-science/deps-library {:mvn/version "0.4.0"}}
-   :main-opts ["-m" "applied-science.deps-library"]}
-
-  ; https://github.com/weavejester/cljfmt
+ {; https://github.com/weavejester/cljfmt
   :cljfmt
   {:extra-deps {cljfmt/cljfmt {:mvn/version "RELEASE"}}
    :main-opts ["-m" "cljfmt.main" "check" "--indents" "cljfmt.edn"]}
@@ -23,44 +18,21 @@
   {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
    :main-opts ["-m" "clj-kondo.main" "--lint" "src"]}
 
-  :outdated
-  {:extra-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
-   :main-opts ["-m" "antq.core"]}
-
   :check
   {:extra-deps {athos/clj-check {:git/url "https://github.com/athos/clj-check.git"
                                  :sha "0ca84df1357d71429243b99908303f45a934654c"}}
    :main-opts ["-m" "clj-check.check"]}
 
-  :garamond
-  {:extra-deps {com.workframe/garamond {:mvn/version "0.4.0"}}
-   :main-opts ["-m" "garamond.main"]}
+  :webly-npm-install {:extra-deps {org.pinkgorilla/webly {:mvn/version "0.5.660"}}
+                      :exec-fn webly.app.app/webly-build
+                      :exec-args {:config [{}]
+                                  :profile "npm-install"}}
 
-  ; demo
-
-  :goldly-build 
-  {:extra-paths ["target/webly" ; to include the sci-bindings info
-                 "demo"]
-   :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.520"}
-                org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; reagent
-                }
-   :exec-fn goldly.app.build/goldly-build
-   :exec-args {:profile "npm-install"
-               :config  ["webly/config.edn" "goldly/config.edn" "demo-config.edn"]}}
-
-
-  :goldly-run 
-  {:extra-paths ["target/webly" ; to include the sci-bindings info
-                 "node_modules" ; css from npm
-                 "demo"]
-   :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.520"}
-                org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; reagent
-                }
-   :exec-fn modular.system/start!
-   :exec-args {:profile "jetty"
-               :services "goldly/services.edn"
-               :config  ["webly/config.edn" "goldly/config.edn" "demo-config.edn"]}}
-
+;github ci
+  :build {:deps {io.github.clojure/tools.build {:mvn/version "0.9.6"}
+                 slipset/deps-deploy {:mvn/version "0.2.1"}
+                 babashka/fs {:mvn/version "0.0.5"}}
+          :ns-default build}
 
 ;
   }}

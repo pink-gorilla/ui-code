@@ -1,4 +1,4 @@
-(ns ui.codemirror.unbound.codemirror
+(ns ui.codemirror.codemirror
   (:require
    [taoensso.timbre :refer-macros [debug debugf info infof warn error]]
    [reagent.core :as r]
@@ -17,11 +17,18 @@
    ; [cljsjs.codemirror.mode.clojure-parinfer]
    ;["codemirror/keymap/vim"]
    [ui.codemirror.highlight]
-   [ui.codemirror.unbound.options :refer [cm-default-opts ensure-initialized]]
-   [ui.codemirror.unbound.theme]
-   [ui.codemirror.registry :refer [active-editor-atom get-editor]]))
+   [ui.codemirror.options :refer [cm-default-opts ensure-initialized]]
+   ;[ui.codemirror.theme]
+ ))
 
-(defn create-editor [id el opts-js]
+(defonce active-editor-atom
+  (r/atom {}))
+
+(defn get-editor [id]
+  (get @active-editor-atom id))
+
+
+(defn- create-editor [id el opts-js]
   (info "creating codemirror-js id: " id)
   (ensure-initialized)
   ;cm_ (CodeMirror. el opts-js)
@@ -29,14 +36,14 @@
     (swap! active-editor-atom assoc id cm)
     cm))
 
-(defn destroy-editor [id]
+(defn- destroy-editor [id]
   (info "destroying codemirror-js id: " id)
   (if-let [cm (get-editor id)]
     (do (.toTextArea cm)
         (swap! active-editor-atom dissoc id))
     (error "Could not kill CodeMirror instance id: " id)))
 
-(defn codemirror-unbound
+(defn codemirror
   [id cm-opts]
   (let [cm-opts (or cm-opts {})
         opts  (merge

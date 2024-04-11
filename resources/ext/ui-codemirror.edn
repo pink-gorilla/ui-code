@@ -1,28 +1,26 @@
 {:name "ui-codemirror"
  ; build
- :lazy-sci true
- :cljs-namespace [; for codemirror with reagent-atom bindings.
-                  ui.codemirror.unbound.codemirror
-                  ui.codemirror.bound.codemirror-atom
-                  ; for interactions with codemirror instance:
-                  ui.codemirror.registry
-                  ui.codemirror.unbound.theme
-                  ui.codemirror.api.code
-                  ui.codemirror.api.position
-                  ui.codemirror.api.focus]
- :cljs-ns-bindings {'ui.codemirror {'codemirror-unbound ui.codemirror.unbound.codemirror/codemirror-unbound
-                                    'codemirror ui.codemirror.bound.codemirror-atom/codemirror-atom
-                                    'codemirror-viewonly ui.codemirror.bound.codemirror-atom/codemirror-atom-viewonly
-                                    'codemirror-themed ui.codemirror.bound.codemirror-themed/codemirror-themed}
-                    'cm {'style-inline ui.codemirror.unbound.theme/style-codemirror-inline
-                         'style-fullscreen ui.codemirror.unbound.theme/style-codemirror-fullscreen
-                         'get ui.codemirror.registry/get-editor
-                         'focus ui.codemirror.api.focus/focus
-                         'blur ui.codemirror.api.focus/blur
-                         'set-code ui.codemirror.api.code/set-code
-                         'get-code ui.codemirror.api.code/get-code
-                         'cursor-position ui.codemirror.api.position/cursor-position}}
- 
+ :lazy true
+ :cljs-namespace [; for interactions with codemirror instance:
+                  ui.codemirror.api
+                  ui.codemirror.theme
+                  ui.codemirror.codemirror
+                  ; for codemirror with reagent-atom bindings.
+                  ui.codemirror.bound]
+
+ :cljs-ns-bindings {'ui.codemirror.bound {'codemirror-atom ui.codemirror.bound/codemirror-atom
+                                          'codemirror-atom-viewonly ui.codemirror.bound/codemirror-atom-viewonly
+                                          'codemirror-themed ui.codemirror.bound/codemirror-themed}
+                    'ui.codemirror.api {'focus ui.codemirror.api/focus
+                                        'blur ui.codemirror.api/blur
+                                        'set-code ui.codemirror.api/set-code
+                                        'get-code ui.codemirror.api/get-code
+                                        'cursor-position ui.codemirror.api/cursor-position}
+                    'ui.codemirror.theme {'style-inline ui.codemirror.theme/style-codemirror-inline
+                                          'style-fullscreen ui.codemirror.theme/style-codemirror-fullscreen}
+                    'ui.codemirror.codemirror {'get-editor ui.codemirror.codemirror/get-editor
+                                               'codemirror ui.codemirror.codemirror/codemirror}}
+
  :theme {:available {:codemirror {true ["codemirror/lib/codemirror.css"]
                                   "duotone-dark" ["codemirror/theme/duotone-dark.css"]
                                   "seti" ["codemirror/theme/seti.css"]

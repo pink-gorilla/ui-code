@@ -1,4 +1,4 @@
-(ns ui.codemirror.unbound.options
+(ns ui.codemirror.options
   (:require
    [taoensso.timbre :refer-macros [debug debugf info infof warn error]]
    ["codemirror" :as CodeMirror]))

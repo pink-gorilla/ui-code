@@ -1,4 +1,4 @@
-(ns ui.codemirror.unbound.theme)
+(ns ui.codemirror.theme)
 
 ;; styles for theme
 

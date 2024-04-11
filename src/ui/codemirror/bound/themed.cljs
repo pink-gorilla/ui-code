@@ -1,8 +1,7 @@
-(ns ui.codemirror.bound.codemirror-themed
+(ns ui.codemirror.bound.themed
   (:require
    [re-frame.core :as rf]
-   [taoensso.timbre :refer-macros [debug debugf info infof errorf]]
-   [ui.codemirror.unbound.options :refer [ensure-initialized]]
+   [ui.codemirror.options :refer [ensure-initialized]]
    [ui.codemirror.bound.core :refer [codemirror-reagent]]))
 
 (defn codemirror-themed [id fun cm-opt]

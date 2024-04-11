@@ -1,0 +1,15 @@
+{:name "demo"
+ :lazy true
+ :depends-on #{:ui-codemirror}
+ :cljs-namespace [page.codemirror1
+                  page.codemirror2
+                  page.codemirror3]
+ :cljs-ns-bindings {'page.codemirror1 {'codemirror-unbound-page page.codemirror1/codemirror-unbound-page}
+                    'page.codemirror2 {'codemirror-demo-page2 page.codemirror2/codemirror-demo-page2}
+                    'page.codemirror3 {'codemirror-demo-page3 page.codemirror3/codemirror-demo-page3}}
+ ; runtime
+ :cljs-routes {""  page.codemirror1/codemirror-unbound-page
+               "2" page.codemirror2/codemirror-demo-page2
+               "3" page.codemirror3/codemirror-demo-page3}
+ ;
+}

@@ -1,7 +1,7 @@
-(ns ui.codemirror.bound.codemirror-atom
+(ns ui.codemirror.bound.atom
   (:require
    [taoensso.timbre :refer-macros [debug debugf info infof error]]
-   [ui.codemirror.bound.codemirror-themed :refer [codemirror-themed]]))
+   [ui.codemirror.bound.themed :refer [codemirror-themed]]))
 
 (defn codemirror-atom-impl [cm-opt id a path]
   (let [get-data (fn [id]

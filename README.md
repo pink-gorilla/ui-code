@@ -16,9 +16,10 @@
 ## Demo
 
 ```
-clojure -X:goldly-build :profile '"npm-install"'
-clojure -X:goldly-build :profile '"compile2"'
-clojure -X:goldly-run
+cd demo
+clojure -X:webly:npm-install
+clojure -X:webly:compile
+clojure -X:webly:run
 ```
 
 Navigate your webbrowser to port 8080. 
